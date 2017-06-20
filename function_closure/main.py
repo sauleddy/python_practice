@@ -1,34 +1,34 @@
 
-def gen_square_calculator_v1():
+print('closure function')
 
+
+def closure_func():
     funcs = []
-    for i in range(0, 3):
-        def square_calculator():
-            return i ** 2
-        funcs.append(square_calculator)
-
+    for idx in range(0, 3):
+        def inner_func():
+            print('idx=%d' % (idx,))
+        funcs.append(inner_func)
     return funcs
 
 
-f11, f12, f13 = gen_square_calculator_v1()
-print(f11())
-print(f12())
-print(f13())
+my_funcs = closure_func()
+for func in my_funcs:
+    func()
+
+print('refine closure function')
 
 
-def gen_square_calculator_v2():
-
+def closure_func_refined():
     funcs = []
-    for i in range(0, 3):
-        def func_outer(num):
-            def square_calculator():
-                return num ** 2
-            return square_calculator
-        funcs.append(func_outer(i))
+    for idx in range(0, 3):
+        def outer_func(num):
+            def inner_func():
+                print('idx=%d' % (num,))
+            return inner_func
+        funcs.append(outer_func(idx))
     return funcs
 
 
-f21, f22, f23 = gen_square_calculator_v2()
-print(f21())
-print(f22())
-print(f23())
+my_funcs = closure_func_refined()
+for func in my_funcs:
+    func()

@@ -1,22 +1,28 @@
 from functools import reduce
 
+print('simple map sample')
+
 
 def square(num):
     return num ** 2
 
-print(square(2))
 
-my_list1 = [num for num in range(11)]
-print(map(square, my_list1))
-print(list(map(square, my_list1)))
+my_list1 = [idx for idx in range(0, 10)]
+my_list1_square = map(square, my_list1)
+print(list(my_list1_square))
 
 
-def accumulate(x, y):
-    print(x, y)
+print('simple reduce sample')
+
+
+def add(x, y):
     return x + y
 
-# print(reduce(accumulate, [1, 3, 5]))
-print(reduce(lambda x, y: x + y, [1, 3, 5]))
+
+sum_of_list = reduce(add, my_list1)
+print(sum_of_list)
 
 
-
+print('simple reduce sample using lambda')
+sum_of_list = reduce(lambda x, y: x + y, my_list1)
+print(sum_of_list)

@@ -1,26 +1,35 @@
 import sys
 
-'''
-def my_generator(threshold):
-    for i in range(threshold):
-        yield i
+print('simple generator')
+my_generator = (idx for idx in range(1, 4))
+for i in my_generator:
+    print(i)
+
+print('fabonacci generator')
 
 
-for idx in my_generator(5):
-    print(idx)
+def fabonacci_gen():
+    last_values = [1, 1]
+    for idx in range(0, 10):
+        this_value = last_values[0] + last_values[1]
+        last_values[0] = last_values[1]
+        last_values[1] = this_value
+        yield this_value
 
-my_generator = my_generator(2)
-print(next(my_generator))
-print(next(my_generator))
-print(next(my_generator))
 
-sys.exit()
-'''
+for i in fabonacci_gen():
+    print(i)
 
-g = (x * x for x in range(10))
-print(g)
-print(next(g))
-print(next(g))
+# my_generator = fabonacci_gen()
+# print(next(my_generator))
+# print(next(my_generator))
+# print(next(my_generator))
+
+
+# g = (x * x for x in range(10))
+# print(g)
+# print(next(g))
+# print(next(g))
 
 
 def my_generator_loop(threshold):
@@ -42,7 +51,3 @@ except StopIteration:
     print(StopIteration.args, StopIteration.value)
 finally:
     print('in finalize')
-
-
-
-
